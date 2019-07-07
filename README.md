@@ -1,4 +1,4 @@
-# OnShape_Hex_Nut_FeatureScript
+# OnShape Hex Nut FeatureScript
 Create a hex nut using FeatureScript onShape\
 *Demo:*
 ![](images/Hex.gif)
