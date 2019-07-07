@@ -6,7 +6,7 @@
 #    By: phtruong <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/07 13:10:05 by phtruong          #+#    #+#              #
-#    Updated: 2019/07/07 13:10:52 by phtruong         ###   ########.fr        #
+#    Updated: 2019/07/07 14:26:10 by phtruong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,15 +55,20 @@ export const myFeature = defineFeature(function(context is Context, id is Id, de
     ** the distance from the center to one of the vertex is 2/3 of the height of the triangle.
     ** Thus by doing (hex_dia*sqrt(3))/2 * 2/3 or simplied to (hex_dia * sqrt(3)) / 3, 
     ** we can get the distance from the center to the vertex for the sketch.
+	** Parameter:
+	** 		context is Context, id is Id (passed in from main)
     ** Default unit: inch
     ** Functionality: Sketch the base for extrution
+	** Return: NULL
     */
     function sketchHex(context is Context, id is Id)
     {
         var hex_sketch = newSketch(context, id + "hex", {
                 "sketchPlane" : qCreatedBy(makeId("Top"), EntityType.FACE)
         });
+		// Hex diameter from user input
         var hex_dia = getVariable(context, "hex_dia");
+		// Inner hole diamter from user input
         var hole_dia = getVariable(context, "inner_dia");
         var vertex_height = (hex_dia*sqrt(3))/3;
         skRegularPolygon(hex_sketch, "nut", {
@@ -80,11 +85,15 @@ export const myFeature = defineFeature(function(context is Context, id is Id, de
     /*
     ** function extrudeBase:
     ** Using the sketch previously, extrude the the hex.
+	** Parameter:
+	** 		context is Context, id is Id (passed in from main)
     ** Default unit: inch
-    ** Functionality: Extrude the hex with the given height from user input.
+    ** Functionality: Extrude the hex with the given height from user input.	
+	** Return: NULL
     */
     function extrudeBase(context is Context, id is Id)
     {
+		// height of the hex nut from user input
         var height = getVariable(context, "hex_height");
         opExtrude(context, id + "base_extrude", {
                 "entities" : qSketchRegion(id + "hex",true),
@@ -96,8 +105,11 @@ export const myFeature = defineFeature(function(context is Context, id is Id, de
     /*
     ** function sketchChamfer:
     ** Sketch two right triangles to chamfer the edge of the hex.
+	** Parameter:
+	** 		context is Context, id is Id (passed in from main)
     ** Default unit: inch
     ** Functionality: Create sketch for revolve chamfer the hex.
+	** Return: NULL
     */
     function sketchChamfer(context is Context, id is Id)
     {
@@ -141,7 +153,10 @@ export const myFeature = defineFeature(function(context is Context, id is Id, de
     /*
     ** function outerChamfer
     ** Using the previous sketch, revolve remove the edges
+	** Parameter:
+	** 		context is Context, id is Id (passed in from main)
     ** Functionality: Chamfer the edge using revolve.
+	** Return: NULL
     */
     function outerChamfer(context is Context, id is Id)
     {
@@ -157,8 +172,11 @@ export const myFeature = defineFeature(function(context is Context, id is Id, de
     /*
     ** function innerCylExtrude
     ** Uses simple extrude on the surface on the inner hex to create a guide for next helix operation
+	** Parameter:
+	** 		context is Context, id is Id (passed in from main)
     ** Default unit: inch
     ** Functionality: Create a guide for helix for threading
+	** Return: NULL
     */
     function innerCylExtrude(context is Context, id is Id)
     {
@@ -175,8 +193,11 @@ export const myFeature = defineFeature(function(context is Context, id is Id, de
     /*
     ** function helixGuide
     ** Using the previous extrude, create a helix for threading
+	** Parameter:
+	** 		context is Context, id is Id (passed in from main)
     ** Default unit: inch
     ** Functionality: Takes in user input of pitch size and create a helix
+	** Return: NULL
     */
     function helixGuide(context is Context, id is Id)
     {
@@ -193,8 +214,11 @@ export const myFeature = defineFeature(function(context is Context, id is Id, de
     /*
     ** function innerSweep
     ** Using the previous helixGuide, create and equilateral triangle to sweep remove the inner cylinder
+	** Parameter:
+	** 		context is Context, id is Id (passed in from main)
     ** Default unit: inch
-    ** Functionality: Remove sweep the inner hex nut.
+    ** Functionality: Remove sweep the inner hex nut
+	** Return: NULL
     */
     function innerSweep(context is Context, id is Id)
     {
