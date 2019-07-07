@@ -6,7 +6,7 @@
 #    By: phtruong <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/07 13:10:05 by phtruong          #+#    #+#              #
-#    Updated: 2019/07/07 14:26:10 by phtruong         ###   ########.fr        #
+#    Updated: 2019/07/07 14:29:52 by phtruong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ export const myFeature = defineFeature(function(context is Context, id is Id, de
 	** Parameter:
 	** 		context is Context, id is Id (passed in from main)
     ** Default unit: inch
-    ** Functionality: Sketch the base for extrution
+    ** Functionality: Sketch the base for extrusion
 	** Return: NULL
     */
     function sketchHex(context is Context, id is Id)
