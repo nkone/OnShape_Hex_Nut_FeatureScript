@@ -4,6 +4,7 @@ Create a hex nut using FeatureScript onShape\
 ![](images/Hex.gif)
 
 Users can change:\
-Height
-Hole Radius
-Pitch Size
+Diameter\
+Height\
+Hole size\
+Pitch Size\
