@@ -7,4 +7,5 @@ Users can change:\
 Diameter\
 Height\
 Hole size\
-Pitch Size
+Pitch Size\
+Default unit is in **inches**
